@@ -18,22 +18,22 @@ Download or simply include the relevant dependencies into your website:
 #### Viewer
 
 ```html
-<script src="https://unpkg.com/bpmn-js@4.0.3/dist/bpmn-viewer.development.js"></script>
+<script src="https://unpkg.com/bpmn-js@5.0.5/dist/bpmn-viewer.development.js"></script>
 ```
 
-Download the complete [viewer example](https://rawgit.com/bpmn-io/bpmn-js-examples/master/starter/viewer.html).
+Download the complete [viewer example](https://cdn.staticaly.com/gh/bpmn-io/bpmn-js-examples/master/starter/viewer.html).
 
 #### Modeler
 
 ```html
 <!-- necessary stylesheets -->
-<link rel="stylesheet" href="https://unpkg.com/bpmn-js@4.0.3/dist/assets/diagram-js.css" />
-<link rel="stylesheet" href="https://unpkg.com/bpmn-js@4.0.3/dist/assets/bpmn-font/css/bpmn.css" />
+<link rel="stylesheet" href="https://unpkg.com/bpmn-js@5.0.5/dist/assets/diagram-js.css" />
+<link rel="stylesheet" href="https://unpkg.com/bpmn-js@5.0.5/dist/assets/bpmn-font/css/bpmn.css" />
 
-<script src="https://unpkg.com/bpmn-js@4.0.3/dist/bpmn-modeler.development.js"></script>
+<script src="https://unpkg.com/bpmn-js@5.0.5/dist/bpmn-modeler.development.js"></script>
 ```
 
-Download the complete [modeler example](https://rawgit.com/bpmn-io/bpmn-js-examples/master/starter/modeler.html).
+Download the complete [modeler example](https://cdn.staticaly.com/gh/bpmn-io/bpmn-js-examples/master/starter/modeler.html).
 
 
 ## Use the Library
