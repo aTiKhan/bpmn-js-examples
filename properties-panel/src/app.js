@@ -1,13 +1,11 @@
 import $ from 'jquery';
 import BpmnModeler from 'bpmn-js/lib/Modeler';
 
+import { debounce } from 'min-dash';
+
 import propertiesPanelModule from 'bpmn-js-properties-panel';
 import propertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/camunda';
 import camundaModdleDescriptor from 'camunda-bpmn-moddle/resources/camunda.json';
-
-import {
-  debounce
-} from 'min-dash';
 
 import diagramXML from '../resources/newDiagram.bpmn';
 
@@ -35,37 +33,25 @@ function createNewDiagram() {
   openDiagram(diagramXML);
 }
 
-function openDiagram(xml) {
+async function openDiagram(xml) {
 
-  bpmnModeler.importXML(xml, function(err) {
+  try {
 
-    if (err) {
-      container
-        .removeClass('with-diagram')
-        .addClass('with-error');
+    await bpmnModeler.importXML(xml);
 
-      container.find('.error pre').text(err.message);
+    container
+      .removeClass('with-error')
+      .addClass('with-diagram');
+  } catch (err) {
 
-      console.error(err);
-    } else {
-      container
-        .removeClass('with-error')
-        .addClass('with-diagram');
-    }
+    container
+      .removeClass('with-diagram')
+      .addClass('with-error');
 
+    container.find('.error pre').text(err.message);
 
-  });
-}
-
-function saveSVG(done) {
-  bpmnModeler.saveSVG(done);
-}
-
-function saveDiagram(done) {
-
-  bpmnModeler.saveXML({ format: true }, function(err, xml) {
-    done(err, xml);
-  });
+    console.error(err);
+  }
 }
 
 function registerFileDrop(container, callback) {
@@ -147,15 +133,31 @@ $(function() {
     }
   }
 
-  var exportArtifacts = debounce(function() {
+  var exportArtifacts = debounce(async function() {
 
-    saveSVG(function(err, svg) {
-      setEncoded(downloadSvgLink, 'diagram.svg', err ? null : svg);
-    });
+    try {
 
-    saveDiagram(function(err, xml) {
-      setEncoded(downloadLink, 'diagram.bpmn', err ? null : xml);
-    });
+      const { svg } = await bpmnModeler.saveSVG();
+
+      setEncoded(downloadSvgLink, 'diagram.svg', svg);
+    } catch (err) {
+
+      console.error('Error happened saving SVG: ', err);
+
+      setEncoded(downloadSvgLink, 'diagram.svg', null);
+    }
+
+    try {
+
+      const { xml } = await bpmnModeler.saveXML({ format: true });
+
+      setEncoded(downloadLink, 'diagram.bpmn', xml);
+    } catch (err) {
+
+      console.log('Error happened saving XML: ', err);
+
+      setEncoded(downloadLink, 'diagram.bpmn', null);
+    }
   }, 500);
 
   bpmnModeler.on('commandStack.changed', exportArtifacts);

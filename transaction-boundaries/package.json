@@ -33,13 +33,14 @@
     "grunt-browserify": "^5.0.0",
     "grunt-contrib-connect": "~1.0.2",
     "grunt-contrib-copy": "~1.0.0",
+    "grunt-contrib-jshint": "^2.1.0",
     "grunt-contrib-less": "^1.0.1",
     "grunt-contrib-watch": "~1.0.0",
     "load-grunt-tasks": "~3.5.0",
     "stringify": "^3.1.0"
   },
   "dependencies": {
-    "bpmn-js": "^5.0.5",
+    "bpmn-js": "^8.6.1",
     "bpmn-js-transaction-boundaries": "^0.1.1",
     "diagram-js": "^5.0.0",
     "jquery": "^3.3.1",

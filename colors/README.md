@@ -1,3 +1,4 @@
+
 # bpmn-js colors
 
 This example shows how to add colors to BPMN diagrams rendered with [bpmn-js](https://github.com/bpmn-io/bpmn-js).
@@ -52,27 +53,26 @@ Add a CSS snippet like the following to your HTML file:
 Now, attach a highlight overlay with the given class to certain elements:
 
 ```javascript
-viewer.importXML(diagramXML, function() {
+await viewer.importXML(diagramXML);
 
-  var overlays = viewer.get('overlays');
-  var elementRegistry = viewer.get('elementRegistry');
+var overlays = viewer.get('overlays');
+var elementRegistry = viewer.get('elementRegistry');
 
-  var shape = elementRegistry.get('UserTask_1');
+var shape = elementRegistry.get('UserTask_1');
 
-  var $overlayHtml =
-    $('<div class="highlight-overlay">')
-      .css({
-        width: shape.width,
-        height: shape.height
-      });
+var $overlayHtml =
+  $('<div class="highlight-overlay">')
+    .css({
+      width: shape.width,
+      height: shape.height
+    });
 
-  overlays.add('UserTask_1', {
-    position: {
-      top: -5,
-      left: -5
-    },
-    html: $overlayHtml
-  });
+overlays.add('UserTask_1', {
+  position: {
+    top: -5,
+    left: -5
+  },
+  html: $overlayHtml
 });
 ```
 
@@ -89,10 +89,14 @@ var modeling = bpmnModeler.get('modeling');
 
 var elementsToColor = [ element1, element2 ];
 
+// setting colors
 modeling.setColor(elementsToColor, {
-  stroke: 'green',
-  fill: 'yellow'
+  stroke: '#00ff00',
+  fill: '#ffff00'
 });
+
+// removing previously set colors
+modeling.setColor(elementsToColor, null);
 ```
 
 The colors are persisted in the BPMN 2.0 diagram and shown by the BPMN viewer, too.
@@ -115,12 +119,11 @@ The snippet ensures that elements with the `highlight` class get a SVG fill of `
 After import, add the `highlight` class as an element marker to the every element you would like to see colored in green:
 
 ```javascript
-viewer.importXML(diagramXML, function() {
+await viewer.importXML(diagramXML);
 
-  var canvas = viewer.get('canvas');
+var canvas = viewer.get('canvas');
 
-  canvas.addMarker('UserTask_1', 'highlight');
-});
+canvas.addMarker('UserTask_1', 'highlight');
 ```
 
 

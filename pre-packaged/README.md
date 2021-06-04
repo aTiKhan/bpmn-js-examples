@@ -18,7 +18,7 @@ Download or simply include the relevant dependencies into your website:
 #### Viewer
 
 ```html
-<script src="https://unpkg.com/bpmn-js@5.0.5/dist/bpmn-viewer.development.js"></script>
+<script src="https://unpkg.com/bpmn-js@8.6.1/dist/bpmn-viewer.development.js"></script>
 ```
 
 Download the complete [viewer example](https://cdn.staticaly.com/gh/bpmn-io/bpmn-js-examples/master/starter/viewer.html).
@@ -27,10 +27,10 @@ Download the complete [viewer example](https://cdn.staticaly.com/gh/bpmn-io/bpmn
 
 ```html
 <!-- necessary stylesheets -->
-<link rel="stylesheet" href="https://unpkg.com/bpmn-js@5.0.5/dist/assets/diagram-js.css" />
-<link rel="stylesheet" href="https://unpkg.com/bpmn-js@5.0.5/dist/assets/bpmn-font/css/bpmn.css" />
+<link rel="stylesheet" href="https://unpkg.com/bpmn-js@8.6.1/dist/assets/diagram-js.css" />
+<link rel="stylesheet" href="https://unpkg.com/bpmn-js@8.6.1/dist/assets/bpmn-font/css/bpmn.css" />
 
-<script src="https://unpkg.com/bpmn-js@5.0.5/dist/bpmn-modeler.development.js"></script>
+<script src="https://unpkg.com/bpmn-js@8.6.1/dist/bpmn-modeler.development.js"></script>
 ```
 
 Download the complete [modeler example](https://cdn.staticaly.com/gh/bpmn-io/bpmn-js-examples/master/starter/modeler.html).
@@ -46,15 +46,16 @@ var bpmnJS = new BpmnJS({
   container: '#canvas'
 });
 
-bpmnJS.importXML(someDiagram, function(err) {
+try {
 
-  if (!err) {
-    console.log('success!');
-    viewer.get('canvas').zoom('fit-viewport');
-  } else {
-    console.log('something went wrong:', err);
-  }
-});
+  await bpmnJS.importXML(someDiagram);
+
+  console.log('success!');
+  viewer.get('canvas').zoom('fit-viewport');
+} catch (err) {
+
+  console.error('something went wrong:', err);
+}
 ```
 
 ## License

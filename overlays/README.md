@@ -89,15 +89,10 @@ var bpmnViewer = new BpmnViewer({
 Import a BPMN 2.0 diagram and add the overlays in the `done` callback:
 
 ```javascript
-bpmnViewer.importXML(diagramXML, function(err) {
+await bpmnViewer.importXML(diagramXML);
 
-  if (err) {
-    return console.error('could not import BPMN 2.0 diagram', err);
-  }
-
-  // retrieve services and work with them
-  bpmnViewer.get('overlays').add(...);
-});
+// retrieve services and work with them
+bpmnViewer.get('overlays').add(...);
 ```
 
 

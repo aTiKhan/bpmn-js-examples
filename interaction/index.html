@@ -2,7 +2,7 @@
 <head>
   <title>bpmn-js interaction demo</title>
 
-  <link rel="stylesheet" href="https://unpkg.com/bpmn-js@5.0.5/dist/assets/diagram-js.css" />
+  <link rel="stylesheet" href="https://unpkg.com/bpmn-js@8.6.1/dist/assets/diagram-js.css" />
 
   <style>
     .console {
@@ -43,7 +43,7 @@
   </div>
 
   <!-- viewer -->
-  <script src="https://unpkg.com/bpmn-js@5.0.5/dist/bpmn-viewer.development.js"></script>
+  <script src="https://unpkg.com/bpmn-js@8.6.1/dist/bpmn-viewer.development.js"></script>
 
   <!-- app -->
   <script>
@@ -68,14 +68,7 @@
       height: 400
     });
 
-    viewer.importXML(diagramXML, function(err) {
-      if (err) {
-        console.error('failed to load diagram');
-        console.error(err);
-
-        return log('failed to load diagram', err);
-      }
-
+    viewer.importXML(diagramXML).then(function(){
 
       // diagram is loaded, add interaction to it
 
@@ -117,6 +110,12 @@
         alert('clicked the end event!');
       });
 
+    }).catch(function(err) {
+
+      console.error('failed to load diagram');
+      console.error(err);
+
+      return log('failed to load diagram', err);
     });
   </script>
 </html>

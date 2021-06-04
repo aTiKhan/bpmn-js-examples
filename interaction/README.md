@@ -20,14 +20,15 @@ it has a diagram loaded:
 ```javascript
 var viewer = new BpmnJS({ container: SOME_CONTAINER });
 
-viewer.importXML(diagramXML, function(err) {
-  if (err) {
-    return console.error(err);
-  }
+try {
+	await viewer.importXML(diagramXM);
 
-  // diagram is loaded, add interaction to it now
-  // see below for options
-});
+	// diagram is loaded, add interaction to it now
+	// see below for options
+	// ...
+} catch (err) {
+	console.error('Error happened: ', err);
+}
 ```
 
 Two options exists for making your diagram interactive.

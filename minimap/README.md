@@ -27,14 +27,9 @@ var bpmnModeler = new BpmnModeler({
   ]
 });
 
-bpmnModeler.importXML(xml, function(err) {
+await bpmnModeler.importXML(xml);
 
-  if (err) {
-    console.error(err);
-  } else {
-    console.log('Awesome! Ready to navigate!');
-  }
-});
+console.log('Awesome! Ready to navigate!');
 ```
 
 Checkout [`app/app.js`](app/app.js) for details.

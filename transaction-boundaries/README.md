@@ -29,16 +29,10 @@ var bpmnModeler = new BpmnModeler({
   ]
 });
 
-bpmnModeler.importXML(xml, function(err) {
+await bpmnModeler.importXML(xml);
 
-  if (err) {
-      console.error(err);
-    } else {
-      var transactionBoundaries = bpmnModeler.get('transactionBoundaries');
-
-      transactionBoundaries.show();
-    }
-  });
+var transactionBoundaries = bpmnModeler.get('transactionBoundaries');
+transactionBoundaries.show();
 
 ```
 
